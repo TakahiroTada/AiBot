@@ -4,8 +4,10 @@
 // Generated with EchoBot .NET Template version v4.17.1
 
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace EchoBot
 {
@@ -14,6 +16,10 @@ namespace EchoBot
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
